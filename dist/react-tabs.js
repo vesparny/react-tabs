@@ -94,6 +94,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
+	/* eslint no-unused-vars:0 */
+
 	var _classnames = __webpack_require__(3);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -122,6 +124,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function render() {
 	      var _this = this;
 
+	      var children = this.props.children;
+	      if (!Array.isArray(children)) {
+	        children = [children];
+	      }
 	      var headings = this.props.children.map(function (child, index) {
 	        var classes = (0, _classnames2['default'])({
 	          'Tab-li': true,
@@ -160,7 +166,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(_react.Component);
 
 	Tabs.propTypes = {
-	  active: _react.PropTypes.number
+	  active: _react.PropTypes.number,
+	  children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.element]).isRequired,
+	  alignRight: _react.PropTypes.bool,
+	  alignLeft: _react.PropTypes.bool
 	};
 
 	Tabs.defaultProps = {
@@ -250,16 +259,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var Tab = (function (_React$Component) {
+	/* eslint no-unused-vars:0 */
+
+	var Tab = (function (_Component) {
 	  function Tab() {
 	    _classCallCheck(this, Tab);
 
-	    if (_React$Component != null) {
-	      _React$Component.apply(this, arguments);
+	    if (_Component != null) {
+	      _Component.apply(this, arguments);
 	    }
 	  }
 
-	  _inherits(Tab, _React$Component);
+	  _inherits(Tab, _Component);
 
 	  _createClass(Tab, [{
 	    key: "render",
@@ -277,9 +288,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 
 	  return Tab;
-	})(_react2["default"].Component);
+	})(_react.Component);
 
-	;
+	Tab.propTypes = {
+	  children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.element]).isRequired
+	};
 
 	exports["default"] = Tab;
 	module.exports = exports["default"];

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';  /* eslint no-unused-vars:0 */
 
-class Tab extends React.Component  {
+class Tab extends Component {
 
   render() {
     return (
@@ -11,6 +11,13 @@ class Tab extends React.Component  {
       </div>
     );
   }
+}
+
+Tab.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element
+  ]).isRequired
 };
 
 export default Tab;

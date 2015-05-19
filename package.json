@@ -5,7 +5,9 @@
   "main": "modules/index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "start": "./scripts/startSiteDevServer.sh"
+    "start": "./scripts/startSiteDevServer.sh",
+    "eslint": "./node_modules/.bin/eslint .",
+    "jscs": "./node_modules/.bin/jscs ./src"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "babel-eslint": "^3.1.1",
     "babel-loader": "^5.0.0",
     "eslint": "^0.20.0",
+    "eslint-plugin-react": "^2.3.0",
     "react": "~0.13.3",
     "react-hot-loader": "^1.2.3",
     "webpack": "^1.7.3",

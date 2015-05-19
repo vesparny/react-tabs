@@ -16,16 +16,18 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var Tab = (function (_React$Component) {
+/* eslint no-unused-vars:0 */
+
+var Tab = (function (_Component) {
   function Tab() {
     _classCallCheck(this, Tab);
 
-    if (_React$Component != null) {
-      _React$Component.apply(this, arguments);
+    if (_Component != null) {
+      _Component.apply(this, arguments);
     }
   }
 
-  _inherits(Tab, _React$Component);
+  _inherits(Tab, _Component);
 
   _createClass(Tab, [{
     key: "render",
@@ -43,9 +45,11 @@ var Tab = (function (_React$Component) {
   }]);
 
   return Tab;
-})(_react2["default"].Component);
+})(_react.Component);
 
-;
+Tab.propTypes = {
+  children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.element]).isRequired
+};
 
 exports["default"] = Tab;
 module.exports = exports["default"];

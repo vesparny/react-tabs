@@ -18,6 +18,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+/* eslint no-unused-vars:0 */
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -46,6 +48,10 @@ var Tabs = (function (_Component) {
     value: function render() {
       var _this = this;
 
+      var children = this.props.children;
+      if (!Array.isArray(children)) {
+        children = [children];
+      }
       var headings = this.props.children.map(function (child, index) {
         var classes = (0, _classnames2['default'])({
           'Tab-li': true,
@@ -84,7 +90,10 @@ var Tabs = (function (_Component) {
 })(_react.Component);
 
 Tabs.propTypes = {
-  active: _react.PropTypes.number
+  active: _react.PropTypes.number,
+  children: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.element]).isRequired,
+  alignRight: _react.PropTypes.bool,
+  alignLeft: _react.PropTypes.bool
 };
 
 Tabs.defaultProps = {

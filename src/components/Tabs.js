@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';  /* eslint no-unused-vars:0 */
 import classNames from 'classnames';
 
-class Tabs extends Component  {
+class Tabs extends Component {
 
   constructor(props) {
     super(props);
@@ -17,6 +17,10 @@ class Tabs extends Component  {
   }
 
   render() {
+    let children = this.props.children;
+    if (!Array.isArray(children)) {
+      children = [children];
+    }
     const headings = this.props.children.map((child, index) =>{
       let classes = classNames({
         'Tab-li': true,
@@ -50,7 +54,13 @@ class Tabs extends Component  {
 }
 
 Tabs.propTypes = {
-  active: PropTypes.number
+  active: PropTypes.number,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element
+  ]).isRequired,
+  alignRight: PropTypes.bool,
+  alignLeft: PropTypes.bool
 };
 
 Tabs.defaultProps = {
