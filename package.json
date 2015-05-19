@@ -1,0 +1,43 @@
+{
+  "name": "@vesparny/react-tabs",
+  "version": "0.0.1",
+  "description": "A React tabs component",
+  "main": "modules/index.js",
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "start": "./scripts/startSiteDevServer.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vesparny/react-tabs.git"
+  },
+  "keywords": [
+    "react",
+    "react.js",
+    "tabs",
+    "react-component"
+  ],
+  "author": "Alessandro Arnodo <alessandro@arnodo.net> (http://alessandro.arnodo.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vesparny/react-tabs/issues"
+  },
+  "homepage": "https://github.com/vesparny/react-tabs#readme",
+  "peerDependencies": {
+    "react": ">=0.13.0 <0.14.0"
+  },
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "babel-core": "^5.2.17",
+    "babel-eslint": "^3.1.1",
+    "babel-loader": "^5.0.0",
+    "eslint": "^0.20.0",
+    "react": "~0.13.3",
+    "react-hot-loader": "^1.2.3",
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "dependencies": {
+    "classnames": "^2.1.1"
+  }
+}
