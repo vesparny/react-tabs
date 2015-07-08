@@ -1,5 +1,7 @@
-import React, { Component, PropTypes } from 'react';  /* eslint no-unused-vars:0 */
+import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import themeable from 'react-themeable';
+import defaultTheme from '../defaultTheme';
 
 class Tabs extends Component {
 
@@ -17,34 +19,27 @@ class Tabs extends Component {
   }
 
   render() {
+    const theme = themeable(this.props.theme || defaultTheme);
+
     let children = this.props.children;
     if (!Array.isArray(children)) {
       children = [children];
     }
     const headings = this.props.children.map((child, index) =>{
-      let classes = classNames({
-        'Tab-li': true,
-        'active': this.state.active === index
-      });
+
       return (
         <li
-          className={classes}
-          key={index}
+          {...theme(index, 'Tab-li', this.state.active === index  && 'Tab-li-active')}
           onClick={this.selectTab.bind(this, index)}
         >
           {child.props.heading}
         </li>
       );
     });
-    const modifierClasses = classNames({
-      'Tabs--alignRight': this.props.alignRight,
-      'Tabs--alignLeft': this.props.alignLeft,
-      'Tabs': true
-    });
 
     return (
       <div>
-        <ul className={modifierClasses}>
+        <ul {...theme(1, 'Tabs', this.props.alignRight && 'Tabs--alignRight', this.props.alignLeft && 'Tabs--alignLeft')}>
           {headings}
         </ul>
         {this.props.children[this.state.active]}

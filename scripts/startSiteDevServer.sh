@@ -3,4 +3,4 @@
 webpackDevServer=node_modules/.bin/webpack-dev-server
 
 rm -rf .examples/__build__
-$webpackDevServer --config "$PWD/examples/webpack.config.js" --hot --content-base examples
+$webpackDevServer --config "$PWD/examples/webpack.config.js" --hot --content-base examples --port 8000

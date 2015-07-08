@@ -10,7 +10,7 @@ module.exports = {
   entry: [
     path.join(__dirname, 'main.js')
   ].concat(isDev ? [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:8000',
     'webpack/hot/only-dev-server'
   ] : []),
 
