@@ -1,70 +1,100 @@
-import React, { Component, PropTypes } from 'react';  /* eslint no-unused-vars:0 */
-import classNames from 'classnames';
+import React, { PropTypes } from 'react';
+import defaultStyle from '../style';
 
-class Tabs extends Component {
+const Tabs = React.createClass({
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: props.active
+  propTypes: {
+    active: PropTypes.number,
+    children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.element
+    ]).isRequired,
+    alignRight: PropTypes.bool,
+    alignLeft: PropTypes.bool,
+    style: PropTypes.object,
+    onSelect: PropTypes.func
+  },
+
+  getDefaultProps() {
+    return {
+      active: 0,
+      style: defaultStyle
     };
-  }
+  },
 
-  selectTab(selectedIndex) {
+  getInitialState() {
+    return {
+      active: this.props.active
+    };
+  },
+
+  selectTab(ev, selectedIndex) {
     this.setState({
       active: selectedIndex
     });
-  }
+    if (this.props.onSelect) {
+      this.props.onSelect(ev, selectedIndex);
+    }
+  },
+
+  onMouseLeave() {
+    this.setState({
+      hovered: false
+    });
+  },
+
+  onMouseEnter(index) {
+    this.setState({
+      hovered: index
+    });
+  },
 
   render() {
+    const { style } = this.props;
+    let tabsStyle = style.tabs;
+    if (this.props.alignLeft) {
+      tabsStyle = {...tabsStyle, ...style.alignLeft};
+    }
+    if (this.props.alignRight){
+      tabsStyle = {...tabsStyle, ...style.alignRight};
+    }
     let children = this.props.children;
     if (!Array.isArray(children)) {
       children = [children];
     }
     const headings = this.props.children.map((child, index) =>{
-      let classes = classNames({
-        'Tab-li': true,
-        'active': this.state.active === index
-      });
+      let liStyle = this.state.active === index ?
+        {...style.li, ...style.active} :
+        style.li;
+      liStyle = this.state.hovered === index ?
+        {...liStyle, ...style.hover} :
+        liStyle;
       return (
         <li
-          className={classes}
+          role="tab"
+          style={liStyle}
           key={index}
-          onClick={this.selectTab.bind(this, index)}
+          onClick={(ev) => this.selectTab(ev, index)}
+          onMouseEnter={() => this.onMouseEnter(index)}
+          onMouseLeave={() => this.onMouseLeave()}
         >
           {child.props.heading}
         </li>
       );
     });
-    const modifierClasses = classNames({
-      'Tabs--alignRight': this.props.alignRight,
-      'Tabs--alignLeft': this.props.alignLeft,
-      'Tabs': true
-    });
 
     return (
+
       <div>
-        <ul className={modifierClasses}>
+        <ul style={tabsStyle} role="tablist">
           {headings}
         </ul>
-        {this.props.children[this.state.active]}
+        {
+          React.cloneElement(this.props.children[this.state.active], {style})
+        }
       </div>
     );
   }
-}
-
-Tabs.propTypes = {
-  active: PropTypes.number,
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element
-  ]).isRequired,
-  alignRight: PropTypes.bool,
-  alignLeft: PropTypes.bool
-};
-
-Tabs.defaultProps = {
-  active: 0
-};
+});
 
 export default Tabs;

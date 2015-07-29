@@ -1,23 +1,23 @@
-import React, { Component, PropTypes } from 'react';  /* eslint no-unused-vars:0 */
+import React, { PropTypes } from 'react';
 
-class Tab extends Component {
+const Tab = React.createClass({
+  propTypes: {
+    children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.element
+    ]).isRequired,
+    style: PropTypes.object
+  },
 
   render() {
     return (
-      <div className="Tabs-tabContent">
-        <div className="Tabs-pane">
+      <div style={this.props.style.content}>
+        <div style={this.props.style.pane}>
           {this.props.children}
         </div>
       </div>
     );
   }
-}
-
-Tab.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element
-  ]).isRequired
-};
+});
 
 export default Tab;

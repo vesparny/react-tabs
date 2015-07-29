@@ -10,7 +10,7 @@ module.exports = {
   entry: [
     path.join(__dirname, 'main.js')
   ].concat(isDev ? [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:8000',
     'webpack/hot/only-dev-server'
   ] : []),
 
@@ -23,13 +23,11 @@ module.exports = {
   target: 'web',
 
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: isDev ? ['react-hot', 'babel'] : ['babel']
-      }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loaders: isDev ? ['react-hot', 'babel'] : ['babel']
+    }]
   },
 
   resolve: {
@@ -39,7 +37,7 @@ module.exports = {
   },
 
   plugins: [
-		new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

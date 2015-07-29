@@ -23,21 +23,20 @@ module.exports = {
     libraryTarget: 'umd'
   },
 
-  externals: [
-    {
-      "react": {
-        root: "React",
-        commonjs2: "react",
-        commonjs: "react",
-        amd: "react"
-      }
+  externals: [{
+    'react': {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
     }
-  ],
+  }],
 
   module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel' }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel'
+    }]
   },
 
   plugins: plugins

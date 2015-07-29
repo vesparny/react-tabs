@@ -1,4 +1,5 @@
 node_modules
-npm-debug.log
+coverage
+*.log
 .DS_Store
 examples/__build__

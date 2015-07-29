@@ -1,7 +1,11 @@
-import { Tabs, Tab }  from '@vesparny/react-tabs';
+import { Tabs, Tab, style }  from '@vesparny/react-tabs';
 import React from 'react';
 
-class App extends React.Component {
+const App = React.createClass({
+
+  onSelect(event, index) {
+    alert(`Tab with index#${index} has been selected!`);
+  },
 
   render() {
     return (
@@ -15,7 +19,7 @@ class App extends React.Component {
           </Tab>
         </Tabs>
 
-        <Tabs active={1}>
+        <Tabs active={1} onSelect={this.onSelect}>
           <Tab heading="Tab 1">
             <div>tab 1 content</div>
           </Tab>
@@ -26,6 +30,8 @@ class App extends React.Component {
       </div>
     );
   }
-};
+});
+
+export default App;
 
 React.render(<App />, document.getElementById('root'));
